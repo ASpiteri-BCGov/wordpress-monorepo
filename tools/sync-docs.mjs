@@ -31,7 +31,7 @@ const packageDirs = [
  * @param {string} sourceRoot Relative monorepo path containing package folders.
  * @param {string} outRoot    Relative output segment under `docs/content`.
  */
-function syncDocsForGroup( sourceRoot, outRoot ) {
+const syncDocsForGroup = ( sourceRoot, outRoot ) => {
     const baseDir = resolve( repoRoot, sourceRoot );
     const packageNames = readdirSync( baseDir, { withFileTypes: true } )
         .filter( ( entry ) => entry.isDirectory() )
@@ -49,7 +49,7 @@ function syncDocsForGroup( sourceRoot, outRoot ) {
         // Copy package docs into generated VitePress content.
         cpSync( sourceDocs, outputDir, { recursive: true, force: true } );
     }
-}
+};
 
 // Remove old generated docs so deleted/renamed files do not linger.
 rmSync( outputRoot, { recursive: true, force: true } );
