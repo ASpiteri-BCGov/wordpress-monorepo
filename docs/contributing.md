@@ -50,8 +50,8 @@ It:
 - deletes `docs/content/` (generated output)
 - recreates `docs/content/`
 - copies package docs from:
-  - `plugins/<slug>/docs/**` -> `docs/content/plugins/<slug>/`
-  - `themes/<slug>/docs/**` -> `docs/content/themes/<slug>/`
+    - `plugins/<slug>/docs/**` -> `docs/content/plugins/<slug>/`
+    - `themes/<slug>/docs/**` -> `docs/content/themes/<slug>/`
 
 Why this exists:
 
