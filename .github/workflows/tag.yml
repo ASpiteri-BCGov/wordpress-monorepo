@@ -1,0 +1,95 @@
+name: Release Subproject and Update packages.json
+on:
+  push:
+    tags:
+      - '**/v*'
+
+concurrency: 
+  group: composer-repo-update
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    permissions:
+       contents: write
+       pages: write
+       id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm 
+        uses: pnpm/action-setup@v4
+        with:
+            version: 10
+            cache: true
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+            node-version: 24
+            cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Parse Tag
+        id: vars
+        shell: bash
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          NAME=${TAG%/*}
+          VERSION=${TAG##*/}
+
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "project_path=$(npx nx show project ${NAME} --json | jq -r .root)" >> $GITHUB_OUTPUT
+
+      - name: Install Composer dependencies
+        run: npx nx run ${{ steps.vars.outputs.name }}:composer-install
+
+      - name: Nx Build
+        run: npx nx run ${{ steps.vars.outputs.name }}:build
+
+      - name: Zip Artifacts
+        working-directory: ${{ steps.vars.outputs.project_path }}
+        run: |
+            # NOTE:
+            # We create a temporary commit so git archive can include build artifacts
+            # while still respecting .gitattributes export-ignore. This commit is never pushed.
+
+            git add -f dist/
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "ci: commit build files"
+            git archive --output=dist.zip HEAD
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: ${{ steps.vars.outputs.project_path }}/dist.zip
+          tag_name: ${{ steps.vars.outputs.tag }}
+          prerelease: true
+
+      - name: Update packages.json
+        env:
+          REPOSITORY: ${{ github.repository }}
+          TAG: ${{ steps.vars.outputs.tag }}
+          VERSION: ${{ steps.vars.outputs.version }}
+          PROJECT_PATH: ${{ steps.vars.outputs.project_path }}
+        run: |
+          curl -sL https://${{ github.repository_owner }}.github.io/wordpress-monorepo/packages.json -o packages.json || echo '{"packages":{}}' > packages.json
+
+          mkdir public
+
+          php .github/scripts/update-packages.php
+          
+      - name: Deploy to GH Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true

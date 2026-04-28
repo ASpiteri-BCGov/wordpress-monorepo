@@ -33,6 +33,7 @@ build/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 docs/content/
+public/
 
 # nx files
 .nx/cache

@@ -74,16 +74,6 @@ If `wp-env start` fails with `port is already allocated` (for example `8888`), r
 pnpm run wp-env:cleanup
 ```
 
-### Syncing to mirror repos
-
-In order for the syncing to the mirror repos (standalone, readonly theme or plugin repositories) to work correctly for testing on the test server or performing releases, we need to add authentication for a bot user to be allowed to push to those repos. This involves:
-
-1. Create the mirror repo if it doesn't exist already.
-2. Set up branch protection rules to disallow commits from any user other than the bot user that will be pushing to it. It's not intended for users to make any changes to the mirror repos.
-   1. See settings on the [Belleville Terminal repository](https://github.com/bcgov/design-system-wordpress-child-theme-belleville-terminal) for an example.
-3. Update the [Personal Access Token](https://github.com/settings/personal-access-tokens) to add the new mirror repo under `Repository access` > `Only select repositories`.
-   1. Note that the PAT is what is stored in the monorepo's `PUBLISH_REPO_TOKEN`. If we change which user's PAT we want to use for authentication, we must update this secret with the new token.
-
 ---
 
 ## Contributing
@@ -129,7 +119,7 @@ npx nx import https://github.com/bcgov/design-system-wordpress-theme themes/desi
 1. Delete the generator-created directory.
 1. Rename the imported directory back to its original name.
 1. Go through the files changed using git and individually revert any changes that should not be overwritten, for example plugin/theme version should not be overwritten with the default `1.0.0` set by the generator, any sample files can be deleted.
-1. Delete any unnecessary files, like files used for linting. List of files to be delete:
+1. Delete any unnecessary files, like files used for linting. List of files to be deleted:
     - .github/
     - dist/
     - .gitignore
@@ -141,27 +131,32 @@ npx nx import https://github.com/bcgov/design-system-wordpress-theme themes/desi
 1. Run all relevant nx targets to ensure they are functioning. See `project.json` for the full list of targets.
 1. Run linting to ensure linting passes for the imported project (`pnpm lint`).
 
-## Workflows and CI/CD
-
-> ⚠️ Not yet finalized
-
-Theme- and plugin-level workflows will eventually be replaced by root-level workflows that target packages based on changed paths.
-
 ---
 
-## Release Policy (Current Phase)
-
-- This monorepo **does not produce production releases**
-- Official releases continue to be cut from original repositories
-- Scoped tags and release branches exist for historical reference and future planning
+## Release Policy
 
 ### Release Process
 
-Todo: Determine how to automate release process using nx.
+1. Push a tag conforming to the format: `<project name>/<semver>`
+    - For example, `bcgov-wordpress-blocks/v1.1.0-a1` is valid because it contains a correct project name and a valid semver compatible with Composer.
+    - `bcgov-fake-theme/v1.0.1` is not valid because `bcgov-fake-theme` is not a monorepo project.
+    - `bcgov-wordpress-blocks/v100-testing-tag` is not valid because `v100-testing-tag` is not a valid semver.
+1. The `tag.yml` workflow packages and indexes the new version. See the [workflows README for details](.github/workflows/README.md).
+1. The package is now able to be consumed via Composer. The required `composer.json` configuration:
 
-```bash
-npx nx release ...
-```
+    ```json
+    "repositories": [
+        ...
+        {
+            "type": "composer",
+            "url": "https://bcgov.github.io/wordpress-monorepo"
+        }
+    ],
+    "require": {
+        ...
+        "<package name>": "<semver>"
+    }
+    ```
 
 ---
 
