@@ -91,6 +91,21 @@ Usage examples:
 | wp-env-start | Runs [`wp-env start`](https://github.com/WordPress/gutenberg/tree/HEAD/packages/env#wp-env-start) on the project. | ☑️ | ☑️ |
 | wp-env-clean | Runs [`wp-env reset`](https://github.com/WordPress/gutenberg/tree/HEAD/packages/env#wp-env-reset-environment) on the project. | ☑️ | ☑️ |
 
+## Documentation Site
+
+This monorepo uses a single VitePress site rooted at `docs/`.
+
+- Start local docs: `pnpm docs:dev`
+- Build docs: `pnpm docs:build`
+- Preview build: `pnpm docs:preview`
+
+Package-level docs should live close to code:
+
+- `plugins/<slug>/docs/`
+- `themes/<slug>/docs/`
+
+Those docs are synchronized into the VitePress site before dev/build runs.
+
 ## Nx
 
 This repository uses `nx` for various monorepo-related tasks:

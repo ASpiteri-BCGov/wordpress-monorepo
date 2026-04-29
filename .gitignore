@@ -30,6 +30,9 @@ test-results/
 # Build files
 dist/
 build/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/content/
 public/
 
 # nx files

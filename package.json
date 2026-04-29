@@ -54,6 +54,9 @@
         "tslib": "^2.8.1",
         "typescript": "~5.9.3"
     },
+    "devDependencies": {
+        "vitepress": "2.0.0-alpha.17"
+    },
     "scripts": {
         "composer-install": "npx nx run-many -t composer-install",
         "build": "npx nx run-many -t build",
@@ -77,6 +80,10 @@
         "check-engines": "wp-scripts check-engines",
         "check-licenses": "wp-scripts check-licenses --prod",
         "wp-env": "wp-env",
-        "wp-env-clean": "npx nx run-many -t wp-env-clean"
+        "wp-env-clean": "npx nx run-many -t wp-env-clean",
+        "docs:sync": "node tools/sync-docs.mjs",
+        "docs:dev": "pnpm docs:sync && vitepress dev docs",
+        "docs:build": "pnpm docs:sync && vitepress build docs",
+        "docs:preview": "vitepress preview docs"
     }
 }
