@@ -21,5 +21,5 @@
  */
 
 /* eslint-disable no-console */
-console.log('Hello World! This is Icon Text Block block plugin!');
+console.log( 'Hello World! This is Icon Text Block block plugin!' );
 /* eslint-enable no-console */

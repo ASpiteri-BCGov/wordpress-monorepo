@@ -17,8 +17,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 const save = () => {
     return (
-        <p {...useBlockProps.save()}>
-            {'Icon Text Block - hello from the saved content!'}
+        <p { ...useBlockProps.save() }>
+            { 'Icon Text Block - hello from the saved content!' }
         </p>
     );
 };
