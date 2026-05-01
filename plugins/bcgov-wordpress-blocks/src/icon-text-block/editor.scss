@@ -1,9 +1,58 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.editor-styles-wrapper .wp-block-bcgov-wordpress-blocks-icon-text-block {
+    border: 1px solid;
+    padding: 1rem;
 
-.wp-block-bcgov-wordpress-blocks-icon-text-block {
-    border: 1px dotted;
+    .bcgov-wp-blocks-icon-text-block__layout-shell {
+        display: grid;
+        gap: 1rem;
+        align-items: flex-start;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas: 'icon text';
+    }
+
+    &.is-layout-icon-top {
+
+        .bcgov-wp-blocks-icon-text-block__layout-shell {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+                'icon'
+                'text';
+        }
+    }
+
+    .bcgov-wp-blocks-icon-text-block__icon-section,
+    .bcgov-wp-blocks-icon-text-block__text-section {
+        border: 1px dashed;
+        padding: 0.75rem;
+        margin: 0;
+    }
+
+    .bcgov-wp-blocks-icon-text-block__icon-section {
+        grid-area: icon;
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .bcgov-wp-blocks-icon-text-block__text-section {
+        grid-area: text;
+        min-width: 0;
+    }
+
+    .bcgov-wp-blocks-icon-text-block__icon-section::before,
+    .bcgov-wp-blocks-icon-text-block__text-section::before {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    .bcgov-wp-blocks-icon-text-block__icon-section::before {
+        content: 'Icon section';
+    }
+
+    .bcgov-wp-blocks-icon-text-block__text-section::before {
+        content: 'Text section';
+    }
 }

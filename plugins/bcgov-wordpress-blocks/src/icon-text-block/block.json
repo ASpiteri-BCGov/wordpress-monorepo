@@ -8,6 +8,28 @@
     "icon": "media-document",
     "description": "",
     "example": {},
+    "attributes": {
+        "iconId": {
+            "type": "string",
+            "default": ""
+        },
+        "iconSize": {
+            "type": "string",
+            "default": "medium"
+        },
+        "isDecorative": {
+            "type": "boolean",
+            "default": false
+        },
+        "accessibleName": {
+            "type": "string",
+            "default": ""
+        },
+        "layout": {
+            "type": "string",
+            "default": "icon-left"
+        }
+    },
     "supports": {
         "html": false,
         "align": ["wide", "full"],
@@ -28,6 +50,5 @@
     "textdomain": "bcgov-wordpress-blocks",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css",
-    "viewScript": "file:./view.js"
+    "style": ["file:./style-index.css", "file:./index.css"]
 }

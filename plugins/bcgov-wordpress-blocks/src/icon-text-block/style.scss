@@ -1,10 +1,31 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.wp-block-bcgov-wordpress-blocks-icon-text-block.bcgov-wp-blocks-icon-text-block {
 
-.wp-block-bcgov-wordpress-blocks-icon-text-block {
-    padding: 2px;
+    .bcgov-wp-blocks-icon-text-block__layout-shell {
+        display: grid;
+        gap: 1rem;
+        align-items: flex-start;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas: 'icon text';
+    }
+
+    .bcgov-wp-blocks-icon-text-block__icon-section {
+        grid-area: icon;
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .bcgov-wp-blocks-icon-text-block__text-section {
+        grid-area: text;
+        min-width: 0;
+    }
+
+    &.is-layout-icon-top {
+
+        .bcgov-wp-blocks-icon-text-block__layout-shell {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+                'icon'
+                'text';
+        }
+    }
 }
