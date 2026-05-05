@@ -24,12 +24,12 @@ test.describe( 'Icon block', () => {
             .first();
         await expect( inspectorPanel ).toBeVisible();
 
-        // No icon yet: editor preview shows the generic label (saved markup uses "Icon placeholder").
+        // No icon yet: editor preview shows the empty-state call to action.
         await expect(
             editor.canvas.locator(
                 `${ BLOCK_CLASS } .bcgov-wp-blocks-icon__preview`
             )
-        ).toContainText( 'Icon' );
+        ).toContainText( 'Select icon' );
 
         // Filter the picker and choose an icon like a user would.
         await page.getByPlaceholder( 'Search icons' ).fill( 'house' );
