@@ -1,5 +1,6 @@
 .layout-shell {
     display: flex;
+    position: relative;
     max-width: 70rem;
     min-width: 43.125rem;
     border-radius: 4px;
@@ -57,8 +58,9 @@
     position: absolute;
     inset: 0;
     border: 1px solid var(--dswp-surface-color-border-default);
-    box-shadow: 0 0.6px 1.8px 0 var(--dswp-surface-color-border-default),
-            0 3.2px 7.2px 0 var(--dswp-surface-color-border-default);
+    box-shadow:
+        0 0.6px 1.8px 0 var(--dswp-surface-color-border-default),
+        0 3.2px 7.2px 0 var(--dswp-surface-color-border-default);
     border-radius: inherit;
     pointer-events: none;
 }
