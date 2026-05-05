@@ -21,7 +21,5 @@ test( 'icon-text-block block can be inserted and rendered on the frontend', asyn
 
     const frontendBlock = page.locator( BLOCK_CLASS ).first();
     await expect( frontendBlock ).toBeVisible();
-    await expect( frontendBlock ).toContainText(
-        'hello from the saved content!'
-    );
+    await expect( frontendBlock ).toContainText( 'Icon placeholder' );
 } );

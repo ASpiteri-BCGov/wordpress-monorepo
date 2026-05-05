@@ -1,10 +1,41 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.wp-block-bcgov-wordpress-blocks-icon-text-block.bcgov-wp-blocks-icon-text-block {
 
-.wp-block-bcgov-wordpress-blocks-icon-text-block {
-    padding: 2px;
+    .bcgov-wp-blocks-icon-text-block__layout-shell {
+        display: grid;
+        gap: 1rem;
+        align-items: flex-start;
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .bcgov-wp-blocks-icon-text-block__layout-shell > .wp-block-bcgov-wordpress-blocks-icon,
+    .bcgov-wp-blocks-icon-text-block__layout-shell > [data-type='bcgov-wordpress-blocks/icon'] {
+        grid-column: 1;
+        grid-row: 1 / -1;
+    }
+
+    .bcgov-wp-blocks-icon-text-block__layout-shell > *:not(.wp-block-bcgov-wordpress-blocks-icon):not(
+            [data-type='bcgov-wordpress-blocks/icon']
+        ) {
+        grid-column: 2;
+    }
+
+    &.is-layout-icon-top {
+
+        .bcgov-wp-blocks-icon-text-block__layout-shell {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .bcgov-wp-blocks-icon-text-block__layout-shell > .wp-block-bcgov-wordpress-blocks-icon,
+        .bcgov-wp-blocks-icon-text-block__layout-shell > [data-type='bcgov-wordpress-blocks/icon'] {
+            grid-column: 1;
+            grid-row: auto;
+        }
+
+        .bcgov-wp-blocks-icon-text-block__layout-shell > *:not(.wp-block-bcgov-wordpress-blocks-icon):not(
+                [data-type='bcgov-wordpress-blocks/icon']
+            ) {
+            grid-column: 1;
+            grid-row: auto;
+        }
+    }
 }

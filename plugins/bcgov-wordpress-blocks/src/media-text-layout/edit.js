@@ -5,9 +5,11 @@ import {
     MediaUpload,
     MediaUploadCheck,
 } from '@wordpress/block-editor';
+/* eslint-disable import/no-extraneous-dependencies -- @wordpress packages are provided in the monorepo workspace */
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
+/* eslint-enable import/no-extraneous-dependencies */
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.

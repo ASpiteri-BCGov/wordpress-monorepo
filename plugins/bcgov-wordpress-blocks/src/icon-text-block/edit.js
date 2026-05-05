@@ -1,42 +1,107 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import {
+    InspectorControls,
+    useBlockProps,
+    useInnerBlocksProps,
+} from '@wordpress/block-editor';
+/* eslint-disable import/no-extraneous-dependencies -- @wordpress/components is provided in the monorepo workspace */
+import { PanelBody, RadioControl } from '@wordpress/components';
+/* eslint-enable import/no-extraneous-dependencies */
 import './editor.scss';
 
+const INNER_BLOCKS_TEMPLATE = [
+    [
+        'bcgov-wordpress-blocks/icon',
+        {
+            lock: {
+                move: true,
+                remove: true,
+            },
+        },
+    ],
+    [ 'core/heading' ],
+    [ 'core/paragraph' ],
+    [ 'core/list' ],
+    [ 'core/buttons' ],
+];
+
+const ALLOWED_BLOCKS = [
+    'bcgov-wordpress-blocks/icon',
+    'core/heading',
+    'core/paragraph',
+    'core/list',
+    'core/buttons',
+];
+
 /**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
+ * @param {Object}   props               Block props.
+ * @param {Object}   props.attributes    Persisted attributes.
+ * @param {Function} props.setAttributes Updates attributes.
+ * @return {import('react').ReactElement} Editor element.
  */
-const Edit = () => {
+const Edit = ( { attributes = {}, setAttributes = () => {} } = {} ) => {
+    const { layout } = attributes;
+
+    const supportedLayouts = [ 'icon-left', 'icon-top' ];
+    const normalizedLayout = supportedLayouts.includes( layout )
+        ? layout
+        : 'icon-left';
+    const layoutClass = `is-layout-${ normalizedLayout }`;
+
+    const blockProps = useBlockProps( {
+        className: `bcgov-wp-blocks-icon-text-block ${ layoutClass }`,
+    } );
+
+    const innerBlocksProps = useInnerBlocksProps(
+        {
+            className: 'bcgov-wp-blocks-icon-text-block__layout-shell',
+        },
+        {
+            template: INNER_BLOCKS_TEMPLATE,
+            allowedBlocks: ALLOWED_BLOCKS,
+            templateLock: false,
+        }
+    );
+
     return (
-        <p { ...useBlockProps() }>
-            { __(
-                'Icon Text Block - hello from the editor!',
-                'bcgov-wordpress-blocks'
-            ) }
-        </p>
+        <>
+            <InspectorControls>
+                <PanelBody
+                    title={ __( 'Layout', 'bcgov-wordpress-blocks' ) }
+                    initialOpen
+                >
+                    <RadioControl
+                        label={ __(
+                            'Icon/Text arrangement',
+                            'bcgov-wordpress-blocks'
+                        ) }
+                        selected={ layout }
+                        options={ [
+                            {
+                                label: __(
+                                    'Icon left, content right',
+                                    'bcgov-wordpress-blocks'
+                                ),
+                                value: 'icon-left',
+                            },
+                            {
+                                label: __(
+                                    'Icon top, content below',
+                                    'bcgov-wordpress-blocks'
+                                ),
+                                value: 'icon-top',
+                            },
+                        ] }
+                        onChange={ ( value ) =>
+                            setAttributes( { layout: value } )
+                        }
+                    />
+                </PanelBody>
+            </InspectorControls>
+            <div { ...blockProps }>
+                <div { ...innerBlocksProps } />
+            </div>
+        </>
     );
 };
 
