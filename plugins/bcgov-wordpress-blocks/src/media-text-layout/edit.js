@@ -6,7 +6,7 @@ import {
     MediaUploadCheck,
 } from '@wordpress/block-editor';
 /* eslint-disable import/no-extraneous-dependencies -- @wordpress packages are provided in the monorepo workspace */
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { BaseControl, PanelBody, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 /* eslint-enable import/no-extraneous-dependencies */
@@ -37,7 +37,7 @@ const TEMPLATE = [
  * @return {Element} Element to render.
  */
 const Edit = ( { attributes, setAttributes } ) => {
-    const { imagePosition, imageId } = attributes;
+    const { imagePosition, imageId, layoutRatio, characterLimit } = attributes;
     const media = useSelect(
         ( select ) => {
             if ( ! imageId ) {
@@ -48,15 +48,20 @@ const Edit = ( { attributes, setAttributes } ) => {
         },
         [ imageId ]
     );
+    const styles = {
+        '--ratio-image': `${ layoutRatio.image }%`,
+        '--ratio-content': `${ layoutRatio.content }%`,
+    };
     const blockProps = useBlockProps( {
         className:
             'right' === imagePosition ? 'is-image-right' : 'is-image-left',
+        style: styles,
     } );
 
     return (
         <>
             <InspectorControls>
-                <PanelBody title="Layout" initialOpen={ true }>
+                <PanelBody title="Layouts" initialOpen={ true }>
                     <ToggleControl
                         label="Image on right"
                         checked={ 'right' === imagePosition }
@@ -66,6 +71,22 @@ const Edit = ( { attributes, setAttributes } ) => {
                             } )
                         }
                     />
+                    <BaseControl
+                        id="media-text-layout-ratio"
+                        label="Layout Ratio"
+                        help="The default image/content split."
+                    >
+                        <div>
+                            { layoutRatio.image } / { layoutRatio.content }
+                        </div>
+                    </BaseControl>
+                    <BaseControl
+                        id="media-text-layout-character-limit"
+                        label="Character Limit"
+                        help="Maximum recommended character length for headings and paragraphs."
+                    >
+                        <div>{ characterLimit }</div>
+                    </BaseControl>
                 </PanelBody>
             </InspectorControls>
 

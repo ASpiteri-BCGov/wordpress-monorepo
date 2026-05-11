@@ -30,6 +30,17 @@
         "imagePosition": {
             "type": "string",
             "default": "left"
+        },
+        "layoutRatio": {
+            "type": "object",
+            "default": {
+                "image": 25,
+                "content": 75
+            }
+        },
+        "characterLimit": {
+            "type": "number",
+            "default": 200
         }
     },
     "textdomain": "bcgov-wordpress-blocks",
