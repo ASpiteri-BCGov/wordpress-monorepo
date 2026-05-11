@@ -3,78 +3,12 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.editor-styles-wrapper .layout-shell .wp-block-image {
+ .editor-styles-wrapper .layout-shell .wp-block-image {
     position: static;
 }
 
 .editor-styles-wrapper .layout-shell .wp-block-image img {
     position: static;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout,
-.wp-block-bcgov-wordpress-blocks-media-text-layout * {
-    box-sizing: border-box;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout .wp-block-image {
-    background: rgba(0, 0, 0, 0.03);
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout .media-text-content {
-    background: rgba(0, 0, 0, 0.02);
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout .inner-blocks {
-    flex: 0 0 75%;
-    max-width: 75%;
-    min-width: 0;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout
-    .inner-blocks
-    > .block-editor-inner-blocks {
-    width: 100%;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout
-    .inner-blocks
-    > .block-editor-inner-blocks
-    > .block-editor-block-list__layout {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout
-    .inner-blocks
-    > .block-editor-inner-blocks
-    > .block-editor-block-list__layout
-    > * {
-    margin-block: 0;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout .inner-blocks .wp-block-list {
-    margin: 0;
-    padding-inline-start: 1.75rem;
-    list-style-position: outside;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout
-    .inner-blocks
-    .wp-block-list
-    li {
-    margin: 0 0 0.625rem;
-    padding-left: 0.125rem;
-}
-
-.wp-block-bcgov-wordpress-blocks-media-text-layout
-    .inner-blocks
-    .wp-block-list
-    li:last-child {
-    margin-bottom: 0;
-}
-
-.image-placeholder {
     width: 100%;
     height: auto;
 }
