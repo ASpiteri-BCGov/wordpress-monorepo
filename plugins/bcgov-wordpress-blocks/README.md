@@ -21,7 +21,7 @@ These tests are also executed in GitHub CI on pull requests. See .github/workflo
 1. Start the plugin test environment (optional - the nx target will run this automatically):
 
 ```bash
-nx run bcgov-wordpress-blocks:wp-env-start
+npx nx run bcgov-wordpress-blocks:wp-env-start
 ```
 
 1. Run all e2e tests:
