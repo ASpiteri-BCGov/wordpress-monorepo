@@ -1,7 +1,7 @@
 import { test, expect } from '@wordpress/e2e-test-utils-playwright';
 import path from 'path';
 import type { Editor } from '@wordpress/e2e-test-utils-playwright';
-import type { Locator, Page  } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 
 interface Content {
     heading: string;
