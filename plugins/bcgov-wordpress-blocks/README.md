@@ -33,13 +33,13 @@ These tests are also executed in GitHub CI on pull requests. See .github/workflo
 1. Run one e2e spec file:
 
     ```bash
-    npx nx run bcgov-wordpress-blocks:test-e2e -- ./tests/e2e/media-text-layout.spec.js
+    npx nx run bcgov-wordpress-blocks:test-e2e -- ./tests/e2e/media-text-layout.spec.ts
     ```
 
 1. Run one e2e spec file in Playwright debug mode:
 
     ```bash
-    npx nx run bcgov-wordpress-blocks:test-e2e -- --debug ./tests/e2e/media-text-layout.spec.js
+    npx nx run bcgov-wordpress-blocks:test-e2e -- --debug ./tests/e2e/media-text-layout.spec.ts
     ```
 
 1. Run all visual regression tests:
