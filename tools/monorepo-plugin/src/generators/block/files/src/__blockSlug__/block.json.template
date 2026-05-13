@@ -9,7 +9,7 @@
     "description": "<%= blockDescription %>",
     "example": {},
     "supports": {
-        "html": false,
+        "html": false
     },
     "textdomain": "<%= pluginSlug %>",
     "editorScript": "file:./index.js",
