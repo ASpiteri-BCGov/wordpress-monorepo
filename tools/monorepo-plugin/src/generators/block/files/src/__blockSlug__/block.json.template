@@ -9,24 +9,7 @@
     "description": "<%= blockDescription %>",
     "example": {},
     "supports": {
-        "html": false,
-        "align": [
-            "wide",
-            "full"
-        ],
-        "anchor": true,
-        "color": {
-            "text": true,
-            "background": true,
-            "gradients": false
-        },
-        "typography": {
-            "fontSize": true
-        },
-        "spacing": {
-            "padding": true,
-            "margin": true
-        }
+        "html": false
     },
     "textdomain": "<%= pluginSlug %>",
     "editorScript": "file:./index.js",
