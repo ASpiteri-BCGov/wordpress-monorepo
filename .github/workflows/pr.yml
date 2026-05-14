@@ -27,13 +27,16 @@ jobs:
     lint:
         name: Lint monorepo and test affected projects
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
             - name: Checkout
               uses: actions/checkout@v4
               with:
                   fetch-depth: 0
+                  ref: ${{ github.head_ref }}
 
-            - name: Install pnpm 
+            - name: Install pnpm
               uses: pnpm/action-setup@v4
               with:
                   version: 10
@@ -82,15 +85,13 @@ jobs:
                   path: artifacts/test-results/
                   retention-days: 30
 
-            # Todo: Re-enable this when it does something useful.
-            # - name: Run screenshot updates
-            #   run: npx nx affected --base="origin/${{ github.base_ref }}" -t test-screenshot
+            - name: Run screenshot updates
+              run: npx nx affected --base="origin/${{ github.base_ref }}" -t test-screenshot
 
             - name: Run PHP integration tests
               run: npx nx affected --base="origin/${{ github.base_ref }}" -t test-integration
 
-            # Todo: Determine how to allow bot commits without retriggering default CodeQL check.
-            # - name: Commit and push updates
-            #   uses: stefanzweifel/git-auto-commit-action@v7.1.0
-            #   with:
-            #     commit_message: 'Update e2e snapshots (committed automatically via Visual Regression workflow) [skip ci]'
+            - name: Commit and push updates
+              uses: stefanzweifel/git-auto-commit-action@v7.1.0
+              with:
+                commit_message: 'Update e2e snapshots (committed automatically via Visual Regression workflow) [skip ci]'
