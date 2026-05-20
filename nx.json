@@ -72,6 +72,13 @@
                 "command": "wp-env clean",
                 "cwd": "{projectRoot}"
             }
+        },
+        "wp-env-stop": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "sh -c 's=$(wp-env status --json 2>/dev/null); echo \"$s\" | grep -q uninitialized && exit 0; echo \"$s\" | grep -qF \"\\\"status\\\":\\\"stopped\\\"\" && exit 0; exec wp-env stop'",
+                "cwd": "{projectRoot}"
+            }
         }
     },
     "namedInputs": {

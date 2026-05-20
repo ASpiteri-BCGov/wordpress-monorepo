@@ -24,7 +24,7 @@ A **valid** monorepo package in this repository is a workspace member that Nx ca
    | `composer-install` | `composer install` in the project root |
    | `build` | `wp-scripts build` → `dist/` |
    | `start` | `wp-scripts start` (watch) |
-   | `wp-env-start` / `wp-env-clean` | Local WordPress via `@wordpress/env` |
+   | `wp-env-start` / `wp-env-stop` / `wp-env-clean` | Local WordPress via `@wordpress/env` |
    | `test-e2e` | Playwright via `wp-scripts test-playwright` |
    | `test-integration` | PHPUnit inside `wp-env` |
    | `test-screenshot` | Playwright regression config (where used) |

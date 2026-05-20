@@ -42,6 +42,7 @@ Root `package.json` defines monorepo-wide commands. Common examples:
 | `pnpm build` | `nx run-many` → `build` on all projects that define it |
 | `pnpm composer-install` | Composer install for all projects with the target |
 | `pnpm lint` | JS, CSS, PHP, Markdown, and `package.json` lint |
+| `pnpm wp-env-stop` | `wp-env stop` via Nx for applicable projects |
 | `pnpm wp-env-clean` | `wp-env clean` via Nx for applicable projects |
 
 Full tables and target semantics live in the **[docs site](https://bcgov.github.io/wordpress-monorepo/docs/)** (architecture, shared tooling, CI/CD).

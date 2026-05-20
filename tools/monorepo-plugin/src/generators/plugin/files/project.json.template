@@ -22,7 +22,8 @@
             }
         },
         "wp-env-start": {},
-        "wp-env-clean": {}
+        "wp-env-clean": {},
+        "wp-env-stop": {}
     },
     "implicitDependencies": ["packages/phpunit-config/"],
     "tags": ["type:wp-plugin"]

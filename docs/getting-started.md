@@ -52,6 +52,18 @@ npx nx wp-env-start
 
 Or use the underlying command from the project root after reading `project.json` targets. If a port is already in use, stop other `wp-env` instances or adjust the port in `.wp-env.json`.
 
+Stop environments (all projects with the target). Safe to run when nothing is running — idle projects are skipped without error:
+
+```bash
+pnpm wp-env-stop
+```
+
+From a single project directory:
+
+```bash
+npx nx wp-env-stop
+```
+
 Clean / reset environments (all projects with the target):
 
 ```bash
@@ -73,6 +85,6 @@ See [Documentation site](./documentation-site.md) and [Contributing docs](./cont
 - **`pnpm install` fails with `ERR_PNPM_UNSUPPORTED_ENGINE`** — The repo sets `engine-strict=true` in `.npmrc`. Install the Node version required by `package.json` `engines.node` (currently `^24.12.0`), or override only for local experiments with `pnpm install --engine-strict=false` (not for CI).
 - **`pnpm install` fails for other reasons** — Align Node version with `engines`; delete `node_modules` only at root and retry.
 - **`composer install` fails** — Ensure PHP extensions required by root `composer.json` are available.
-- **Port already allocated** — Another `wp-env` may be running; stop it or change the port in the package’s `.wp-env.json`.
+- **Port already allocated** — Another `wp-env` may be running; run `pnpm wp-env-stop` from the repo root or change the port in the package’s `.wp-env.json`.
 
 If `pnpm check-engines` fails in your environment, file an issue or see [Onboarding validation](./onboarding-validation.md) for tracking.
