@@ -7,10 +7,7 @@
             "options": {
                 "command": "composer install",
                 "cwd": "{projectRoot}"
-            },
-            "cache": true,
-            "inputs": ["{projectRoot}/composer.*"],
-            "outputs": ["{projectRoot}/vendor"]
+            }
         },
         "build": {
             "executor": "nx:run-commands",
@@ -20,9 +17,9 @@
                 "output-path": "dist",
                 "blocks-manifest": ""
             },
-            "dependsOn": ["^build"],
-            "cache": true,
-            "outputs": ["{projectRoot}/dist"]
+            "inputs": ["buildInputs"],
+            "outputs": ["{projectRoot}/dist"],
+            "cache": true
         },
         "start": {
             "executor": "nx:run-commands",
@@ -32,9 +29,7 @@
                 "output-path": "dist",
                 "blocks-manifest": ""
             },
-            "dependsOn": ["^build"],
-            "continuous": true,
-            "outputs": ["{projectRoot}/dist"]
+            "continuous": true
         },
         "test-integration": {
             "executor": "nx:run-commands",
@@ -81,6 +76,12 @@
     },
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "buildInputs": [
+            "{projectRoot}/**",
+            "!{projectRoot}/dist/**",
+            "{workspaceRoot}/package.json",
+            "{workspaceRoot}/pnpm-lock.json"
+        ],
         "sharedGlobals": []
     },
     "release": {
