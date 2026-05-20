@@ -4,11 +4,27 @@
  * Replace them with your own styles or remove the file completely.
  */
 .editor-styles-wrapper .layout-shell .wp-block-image {
-    position: static;
+    display: flex;
 }
 
-.editor-styles-wrapper .layout-shell .wp-block-image img {
-    position: static;
-    width: 100%;
-    height: auto;
+.editor-styles-wrapper .layout-shell .image-inner {
+    position: relative;
+    flex: 1 1 var(--ratio-image);
+    display: flex;
+    cursor: pointer;
+}
+
+.editor-styles-wrapper .layout-shell .image-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+
+    border: 2px dashed var(--dswp-surface-color-border-default);
+    background: var(--dswp-surface-color-background-white);
+
+    text-align: center;
 }

@@ -103,10 +103,24 @@ const Edit = ( { attributes, setAttributes } ) => {
                                 allowedTypes={ [ 'image' ] }
                                 value={ imageId }
                                 render={ ( { open } ) => (
-                                    <button
-                                        type="button"
+                                    <div
                                         className="image-inner"
+                                        role="button"
+                                        tabIndex={ 0 }
+                                        aria-label={
+                                            media
+                                                ? 'Replace image'
+                                                : 'Select image'
+                                        }
                                         onClick={ open }
+                                        onKeyDown={ ( event ) => {
+                                            if (
+                                                'Enter' === event.key ||
+                                                ' ' === event.key
+                                            ) {
+                                                open();
+                                            }
+                                        } }
                                     >
                                         { media && media.source_url ? (
                                             <img
@@ -115,10 +129,16 @@ const Edit = ( { attributes, setAttributes } ) => {
                                             />
                                         ) : (
                                             <div className="image-placeholder">
-                                                Select Image
+                                                <h5 className="image-placeholder-title">
+                                                    Select an image
+                                                </h5>
+
+                                                <p className="image-placeholder-help">
+                                                    Click to upload
+                                                </p>
                                             </div>
                                         ) }
-                                    </button>
+                                    </div>
                                 ) }
                             />
                         </MediaUploadCheck>
