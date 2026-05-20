@@ -17,6 +17,16 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
+
+/**
+ * Load Composer autoloader and verify required class exists.
+ * If the autoloader or the required class is missing, halt plugin execution.
+ */
+$autoloader_path = __DIR__ . '/vendor/autoload.php';
+if ( is_file( $autoloader_path ) ) {
+    require_once $autoloader_path;
+}
+
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
  * based on the registered block metadata. Behind the scenes, it registers also all assets so they can be enqueued
