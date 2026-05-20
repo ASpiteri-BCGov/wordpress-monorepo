@@ -31,12 +31,10 @@ export const themeGenerator = async (
         sourceRoot: `${ projectRoot }/src`,
         targets: {},
     } );
-    generateFiles(
-        tree,
-        path.join( __dirname, 'files' ),
-        projectRoot,
-        { ...options, phpNamespace }
-    );
+    generateFiles( tree, path.join( __dirname, 'files' ), projectRoot, {
+        ...options,
+        phpNamespace,
+    } );
     updateLabeler( tree, options.slug );
     await formatFiles( tree );
 };
