@@ -3,7 +3,7 @@
     "description": "Design System Wordpress Child Theme TI-Corp",
     "type": "wordpress-theme",
     "license": "Apache-2.0",
-        "autoload": {
+    "autoload": {
         "psr-4": {
             "Bcgov\\DesignSystemTicorp\\": "src/",
             "Bcgov\\DesignSystemTicorp\\Test\\": "tests/"
