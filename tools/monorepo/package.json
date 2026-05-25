@@ -1,5 +1,5 @@
 {
-    "name": "monorepo-plugin",
+    "name": "monorepo",
     "version": "0.0.1",
     "private": true,
     "description": "",
@@ -17,19 +17,19 @@
                     "{options.outputPath}"
                 ],
                 "options": {
-                    "outputPath": "tools/monorepo-plugin/dist",
-                    "main": "tools/monorepo-plugin/src/index.ts",
-                    "tsConfig": "tools/monorepo-plugin/tsconfig.lib.json",
-                    "rootDir": "tools/monorepo-plugin/src",
+                    "outputPath": "tools/monorepo/dist",
+                    "main": "tools/monorepo/src/index.ts",
+                    "tsConfig": "tools/monorepo/tsconfig.lib.json",
+                    "rootDir": "tools/monorepo/src",
                     "generatePackageJson": false,
                     "assets": [
                         {
-                            "input": "./tools/monorepo-plugin/src",
+                            "input": "./tools/monorepo/src",
                             "glob": "**/!(*.ts)",
                             "output": "."
                         },
                         {
-                            "input": "./tools/monorepo-plugin/src",
+                            "input": "./tools/monorepo/src",
                             "glob": "**/*.d.ts",
                             "output": "."
                         }
