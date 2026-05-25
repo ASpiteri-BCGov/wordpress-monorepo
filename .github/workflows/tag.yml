@@ -51,7 +51,7 @@ jobs:
             exit 1
           fi
 
-          # Validate semver using Node.js (supports PCRE patterns)
+          # Validate semver using a Node.js script
           node .github/scripts/validate-semver.mjs "$VERSION" || exit 1
 
           echo "tag=$TAG" >> $GITHUB_OUTPUT
