@@ -1,0 +1,32 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "ReleaseTag",
+    "title": "Release Tag",
+    "type": "object",
+    "properties": {
+        "project": {
+            "type": "string",
+            "description": "The Nx project name to tag (e.g. bcgov-wordpress-blocks).",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "Which project are you releasing?"
+        },
+        "version": {
+            "type": "string",
+            "description": "Semantic version to tag (e.g. 1.2.3 or v1.2.3). Must be Composer-compatible semver.",
+            "$default": {
+                "$source": "argv",
+                "index": 1
+            },
+            "x-prompt": "What version are you releasing? (e.g. 1.2.3)"
+        },
+        "push": {
+            "type": "boolean",
+            "description": "Push the tag to the remote after creating it.",
+            "default": true
+        }
+    },
+    "required": ["project", "version"]
+}

@@ -88,6 +88,7 @@
         "docs:sync:watch": "chokidar \"plugins/**/docs/**\" \"themes/**/docs/**\" \"tools/sync-docs.mjs\" -c \"node tools/sync-docs.mjs\" -d 300",
         "docs:dev": "pnpm docs:sync && concurrently -k \"pnpm run docs:sync:watch\" \"vitepress dev docs\"",
         "docs:build": "pnpm docs:sync && vitepress build docs",
-        "docs:preview": "vitepress preview docs"
+        "docs:preview": "vitepress preview docs",
+        "release": "npx nx g monorepo:release-tag"
     }
 }

@@ -39,3 +39,15 @@ tsconfig.tsbuildinfo
 # nx files
 .nx/cache
 .nx/workspace-data
+
+# Claude files
+.nx/polygraph
+.claude/worktrees
+.claude/settings.local.json
+
+# Agents and Skills files
+AGENTS.md
+./github/agents/**
+.github/skills/**
+.github/prompts/**
+.github/agents/*.md
