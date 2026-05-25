@@ -2,7 +2,7 @@
 
 /**
  * Validates a version string against semantic versioning (Composer-compatible)
- * Uses JavaScript RegExp which supports PCRE patterns
+ * Uses JavaScript RegExp (ECMAScript syntax)
  */
 
 const version = process.argv[2];
@@ -12,7 +12,7 @@ if (!version) {
   process.exit(1);
 }
 
-// Composer-compatible semver regex (PCRE)
+// Composer-compatible semver regex (ECMAScript-compatible)
 const semverRegex = /^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-((?:0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
 
 if (!semverRegex.test(version)) {

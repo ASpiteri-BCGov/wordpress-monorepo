@@ -13,7 +13,8 @@ export const releaseTagGenerator = async (
     tree: Tree,
     options: ReleaseTagGeneratorSchema
 ) => {
-    const { project, push } = options;
+    const { project } = options;
+    const push = options.push ?? true;
 
     // Strip a leading "v" so the user can type either "1.2.3" or "v1.2.3".
     const version = options.version.replace( /^v/, '' );
