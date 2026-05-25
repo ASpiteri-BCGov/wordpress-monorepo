@@ -12,9 +12,9 @@
 Prefer the **generators** so structure matches standards:
 
 ```bash
-npx nx generate monorepo-plugin:theme
+npx nx generate monorepo:theme
 # or
-npx nx generate monorepo-plugin:plugin
+npx nx generate monorepo:plugin
 pnpm install
 ```
 
@@ -51,7 +51,7 @@ Complete the wizard; history for the subtree is preserved in the monorepo.
 After import, the tree often needs to match generator output:
 
 1. Temporarily rename the imported directory (for example prefix with `_`) so generators can write a fresh folder.
-2. Run the appropriate generator (`monorepo-plugin:theme` or `monorepo-plugin:plugin`) with the **same slug** as the imported project.
+2. Run the appropriate generator (`monorepo:theme` or `monorepo:plugin`) with the **same slug** as the imported project.
 3. Copy generated files **into** the renamed import directory, overwriting where appropriate (some hosts block bulk overwrites in the IDE; use the filesystem if needed).
 4. Remove the empty generator-only directory; restore the imported directory name.
 5. Use Git to **revert** any overwrite that should stay legacy (for example real version numbers instead of generator defaults).

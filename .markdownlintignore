@@ -1,4 +1,4 @@
 artifacts
 vendor
 node_modules
-tools/monorepo-plugin/src/generators/plugin-generator/files/**
+tools/monorepo/src/generators/plugin-generator/files/**

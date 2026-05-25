@@ -72,7 +72,7 @@ module.exports = {
     ignorePatterns: [
         '**/dist/**',
         '**/coverage/**',
-        'tools/monorepo-plugin/src/generators/**/files/**',
+        'tools/monorepo/src/generators/**/files/**',
         '{plugins,themes}/**/build/**',
     ],
 };

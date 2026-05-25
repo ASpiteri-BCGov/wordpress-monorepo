@@ -16,7 +16,7 @@ The BC Government WordPress monorepo brings **themes, plugins, and shared packag
 | `plugins/` | WordPress plugins; each shipping plugin is typically one folder with `package.json`, `composer.json`, and `project.json`. |
 | `themes/` | WordPress themes; same expectations as plugins for Nx and package metadata. |
 | `packages/` | Shared libraries (for example PHPUnit config consumed via Composer path repositories). |
-| `tools/` | Internal tooling (for example the `monorepo-plugin` Nx plugin and doc sync script). |
+| `tools/` | Internal tooling (for example the `monorepo` Nx plugin and doc sync script). |
 | `docs/` | VitePress site source and generated `docs/content/` from package-local docs. |
 | `.github/workflows/` | CI/CD workflows (PR checks, tagged releases, docs deploy). |
 

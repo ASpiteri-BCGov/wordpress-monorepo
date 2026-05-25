@@ -1,4 +1,4 @@
-# monorepo-plugin
+# monorepo
 
 This library was generated with [Nx](https://nx.dev).
 
@@ -7,7 +7,7 @@ This library was generated with [Nx](https://nx.dev).
 ### Create a plugin
 
 ```shell
-npx nx generate monorepo-plugin:plugin
+npx nx generate monorepo:plugin
 ```
 
 By default, this creates a plugin with one initial `sample-block`.
@@ -17,7 +17,7 @@ By default, this creates a plugin with one initial `sample-block`.
 Create a plugin with the default `sample-block`:
 
 ```shell
-npx nx generate monorepo-plugin:plugin --name="My Plugin" --description="My plugin description"
+npx nx generate monorepo:plugin --name="My Plugin" --description="My plugin description"
 ```
 
 `wp-env` ports are assigned automatically by scanning existing `.wp-env.json` files in the monorepo and using the next free port pair (`port` and `testsPort`). Override with `--wpEnvPort=9010` only when you need a specific port.
@@ -41,7 +41,7 @@ The generated plugin registers blocks from `plugins/<plugin-slug>/build`, so Gut
 ### Create a block in an existing plugin
 
 ```shell
-npx nx generate monorepo-plugin:block <plugin-name> <block-name>
+npx nx generate monorepo:block <plugin-name> <block-name>
 ```
 
 This generator is intentionally isolated. It does not create a plugin or compose blocks during plugin generation. It only adds a new block to an existing plugin project under `plugins/`.
@@ -54,8 +54,8 @@ Inputs:
 The generator accepts either the Nx project name or a `plugins/...` path:
 
 ```shell
-npx nx generate monorepo-plugin:block bcgov-wordpress-blocks hero-banner
-npx nx generate monorepo-plugin:block plugins/bcgov-wordpress-blocks hero-banner
+npx nx generate monorepo:block bcgov-wordpress-blocks hero-banner
+npx nx generate monorepo:block plugins/bcgov-wordpress-blocks hero-banner
 ```
 
 Validation rules:
@@ -68,7 +68,7 @@ Validation rules:
 Example:
 
 ```shell
-npx nx generate monorepo-plugin:block bcgov-wordpress-blocks hero-banner
+npx nx generate monorepo:block bcgov-wordpress-blocks hero-banner
 ```
 
 This command generates:
@@ -81,4 +81,4 @@ The block title is derived automatically from the block name, so `hero-banner` b
 
 ## Building
 
-Run `nx build monorepo-plugin` to build the library.
+Run `nx build monorepo` to build the library.

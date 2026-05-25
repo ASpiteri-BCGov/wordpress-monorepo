@@ -27,7 +27,7 @@ pnpm build
 
 **Run one project’s WordPress env:** from that project’s directory, `npx nx wp-env-start` (see the [Getting started](docs/getting-started.md) guide).
 
-**Generators:** `npx nx generate monorepo-plugin:theme` or `npx nx generate monorepo-plugin:plugin`, then `pnpm install`. See [tools/monorepo-plugin/README.md](tools/monorepo-plugin/README.md).
+**Generators:** `npx nx generate monorepo:theme` or `npx nx generate monorepo:plugin`, then `pnpm install`. See [tools/monorepo/README.md](tools/monorepo/README.md).
 
 **Release:** push tag `<nx-project-name>/v<semver>`; see [docs/release-and-deployment.md](docs/release-and-deployment.md) and [docs/versioning.md](docs/versioning.md).
 
