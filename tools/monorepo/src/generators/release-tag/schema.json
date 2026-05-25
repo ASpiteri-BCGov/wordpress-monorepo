@@ -25,7 +25,8 @@
         "push": {
             "type": "boolean",
             "description": "Push the tag to the remote after creating it.",
-            "default": true
+            "default": true,
+            "x-prompt": "Push the tag to remote?"
         }
     },
     "required": ["project", "version"]
