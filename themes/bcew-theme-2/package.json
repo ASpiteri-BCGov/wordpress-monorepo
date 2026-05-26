@@ -20,5 +20,8 @@
         "url": "https://github.com/bcgov/bcew-theme-2#readme",
         "email": "govwordpress@gov.bc.ca"
     },
-    "main": "index.js"
+    "main": "index.js",
+    "dependencies": {
+        "@bcgov/design-tokens": "^4.0.0 "
+    }
 }
