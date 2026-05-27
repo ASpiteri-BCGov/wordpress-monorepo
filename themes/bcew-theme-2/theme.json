@@ -3,6 +3,7 @@
     "version": 3,
     "title": "BCEW Theme 2",
     "settings": {
+        "appearanceTools": false,
         "layout": {
             "contentSize": "var(--wp--custom--bcew--content-width)"
         },
