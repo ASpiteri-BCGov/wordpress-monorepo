@@ -57,7 +57,30 @@ jobs:
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "name=$NAME" >> $GITHUB_OUTPUT
           echo "version=v$VERSION" >> $GITHUB_OUTPUT
+          echo "version_normalized=$VERSION" >> $GITHUB_OUTPUT
           echo "project_path=$(npx nx show project ${NAME} --json | jq -r .root)" >> $GITHUB_OUTPUT
+
+      # If the tag version is X.Y.Z (e.g. 1.2.3), write it into style.css (theme) or <project>.php (plugin).
+      - name: Set WordPress version from tag
+        run: |
+          VERSION="${{ steps.vars.outputs.version_normalized }}"
+          PROJECT="${{ steps.vars.outputs.name }}"
+          ROOT="${{ steps.vars.outputs.project_path }}"
+
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Version '$VERSION' is not X.Y.Z — skipping WordPress version update."
+            exit 0
+          fi
+
+          if [[ -f "$ROOT/style.css" ]]; then
+            sed -i "s/^Version:[[:space:]]*.*/Version:      ${VERSION}/" "$ROOT/style.css"
+            echo "Set theme version to ${VERSION} in ${ROOT}/style.css"
+          elif [[ -f "$ROOT/${PROJECT}.php" ]]; then
+            sed -i "s/^\([[:space:]]*\*[[:space:]]*Version:\)[[:space:]]*.*/\1           ${VERSION}/" "$ROOT/${PROJECT}.php"
+            echo "Set plugin version to ${VERSION} in ${ROOT}/${PROJECT}.php"
+          else
+            echo "No style.css or ${PROJECT}.php in ${ROOT} — skipping version update."
+          fi
 
       - name: Install Composer dependencies
         run: npx nx run ${{ steps.vars.outputs.name }}:composer-install
@@ -72,7 +95,7 @@ jobs:
             # We create a temporary commit so git archive can include build artifacts
             # while still respecting .gitattributes export-ignore. This commit is never pushed.
 
-            git add -f dist/
+            git add -f dist/ style.css *.php 2>/dev/null || git add -f dist/
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "ci: commit build files"

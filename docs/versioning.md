@@ -37,7 +37,20 @@ Examples: `feature/add-hero-block`, `fix/wp-env-port-conflict`.
 
 `tag.yml` currently marks GitHub Releases as **prerelease** (`prerelease: true` in the workflow). Adjust workflow YAML when the program moves to stable release semantics.
 
+## WordPress version on release
+
+When **`tag.yml`** runs for a tag like `bcew-theme-2/v1.4.0`:
+
+1. The workflow parses the tag into project name (`bcew-theme-2`) and version (`1.4.0`).
+2. **Only if the version is `X.Y.Z`** (three numbers, e.g. `1.2.3`) it updates the version field:
+   - **Theme** — `Version:` line in `style.css`
+   - **Plugin** — `* Version:` line in `<nx-project-name>.php`
+3. That file is included in **`dist.zip`** (via a temporary CI commit that is not pushed to `main`).
+
+Tags with other version shapes (for example `1.2.3-beta.1`) still release, but skip this step.
+
+You do not need to edit the version by hand before tagging for `X.Y.Z` releases.
+
 ## Communicating version bumps
 
-- Update **package** `version` fields (`package.json`, `readme.txt`, plugin PHP header) as required by your release checklist before tagging.
 - Document breaking changes in package `docs/` or changelog files as agreed by the team.
