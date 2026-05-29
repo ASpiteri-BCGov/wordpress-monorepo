@@ -102,11 +102,12 @@ jobs:
             git archive --output=dist.zip HEAD
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
-        with:
-          files: ${{ steps.vars.outputs.project_path }}/dist.zip
-          tag_name: ${{ steps.vars.outputs.tag }}
-          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.vars.outputs.tag }}" \
+            --prerelease \
+            "${{ steps.vars.outputs.project_path }}/dist.zip"
 
       - name: Update packages.json
         env:
