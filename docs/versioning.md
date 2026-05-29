@@ -42,14 +42,15 @@ Examples: `feature/add-hero-block`, `fix/wp-env-port-conflict`.
 When **`tag.yml`** runs for a tag like `bcew-theme-2/v1.4.0`:
 
 1. The workflow parses the tag into project name (`bcew-theme-2`) and version (`1.4.0`).
-2. **Only if the version is `X.Y.Z`** (three numbers, e.g. `1.2.3`) it updates the version field:
+2. Source files in the repository are **not** modified.
+3. **Only if the version is `X.Y.Z`** (three numbers, e.g. `1.2.3`), the release **`dist.zip`** gets the version field updated:
    - **Theme** — `Version:` line in `style.css`
    - **Plugin** — `* Version:` line in `<nx-project-name>.php`
-3. That file is included in **`dist.zip`** (via a temporary CI commit that is not pushed to `main`).
+4. That updated file exists only inside **`dist.zip`** attached to the GitHub Release.
 
-Tags with other version shapes (for example `1.2.3-beta.1`) still release, but skip this step.
+Tags with other version shapes (for example `1.2.3-beta.1`) still release, but skip the version update step.
 
-You do not need to edit the version by hand before tagging for `X.Y.Z` releases.
+You do not need to edit the version by hand before tagging for `X.Y.Z` releases. The placeholder in source (e.g. `1.0.0`) can stay as-is.
 
 ## Communicating version bumps
 
