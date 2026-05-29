@@ -46,17 +46,23 @@
                 "command": "wp-scripts test-playwright",
                 "cwd": "{projectRoot}"
             },
-            "dependsOn": ["^build", "wp-env-start"]
+            "dependsOn": ["build", "wp-env-start"]
         },
         "test-screenshot": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "wp-scripts test-playwright",
-                "cwd": "{projectRoot}",
-                "config": "playwright.regression.config.js",
-                "update-snapshots": "all"
+                "command": "UPDATE_SNAPSHOTS=none PROJECT_PATH={projectRoot} docker compose up --exit-code-from=playwright"
             },
-            "dependsOn": ["^build", "wp-env-start"]
+            "parallelism": false,
+            "dependsOn": ["build", "wp-env-start"]
+        },
+        "test-screenshot-generate": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "UPDATE_SNAPSHOTS=all PROJECT_PATH={projectRoot} docker compose up --exit-code-from=playwright"
+            },
+            "parallelism": false,
+            "dependsOn": ["build", "wp-env-start"]
         },
         "wp-env-start": {
             "executor": "nx:run-commands",

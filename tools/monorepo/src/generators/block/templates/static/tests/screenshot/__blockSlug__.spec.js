@@ -4,9 +4,6 @@ test.describe( '<%= blockSlug %> visual regression', () => {
     const BLOCK_NAME = '<%= pluginSlug %>/<%= blockSlug %>';
     const BLOCK_CLASS = '.wp-block-<%= pluginSlug %>-<%= blockSlug %>';
 
-    // Dockerized browser rendering can still differ slightly across environments.
-    const SCREENSHOT_OPTIONS = { maxDiffPixelRatio: 0.02 };
-
     test.beforeEach( async ( { admin } ) => {
         await admin.createNewPost();
     } );
@@ -19,6 +16,6 @@ test.describe( '<%= blockSlug %> visual regression', () => {
             .first();
 
         await expect( preview ).toBeVisible();
-        await expect( preview ).toHaveScreenshot( SCREENSHOT_OPTIONS );
+        await expect( preview ).toHaveScreenshot();
     } );
 } );

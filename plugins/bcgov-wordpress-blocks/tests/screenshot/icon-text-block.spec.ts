@@ -53,7 +53,6 @@ const fillIconTextBlockContent = async ( canvas: FrameLocator ) => {
 const captureResponsiveScreenshots = async (
     previewPage: Page,
     preview: Locator,
-    screenshotOptions: { maxDiffPixelRatio: number },
     snapshots: ReadonlyArray< {
         name: string;
         viewport: { width: number; height: number };
@@ -62,14 +61,12 @@ const captureResponsiveScreenshots = async (
     for ( const snapshot of snapshots ) {
         await previewPage.setViewportSize( snapshot.viewport );
         await expect( preview ).toHaveScreenshot(
-            `icon-text-block-${ snapshot.name }.png`,
-            screenshotOptions
+            `icon-text-block-${ snapshot.name }.png`
         );
     }
 };
 
 test.describe( 'icon-text-block visual regression', () => {
-    const SCREENSHOT_OPTIONS = { maxDiffPixelRatio: 0.02 };
     const BLOCK_NAME = 'bcgov-wordpress-blocks/icon-text-block';
     const BLOCK_CLASS = '.wp-block-bcgov-wordpress-blocks-icon-text-block';
     const SCREENSHOT_SNAPSHOTS = [
@@ -106,7 +103,6 @@ test.describe( 'icon-text-block visual regression', () => {
         await captureResponsiveScreenshots(
             previewPage,
             preview,
-            SCREENSHOT_OPTIONS,
             SCREENSHOT_SNAPSHOTS
         );
     } );

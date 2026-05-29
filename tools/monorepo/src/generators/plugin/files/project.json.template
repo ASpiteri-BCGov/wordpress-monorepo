@@ -16,6 +16,7 @@
         "start": {},
         "test-e2e": {},
         "test-screenshot": {},
+        "test-screenshot-generate": {},
         "test-integration": {
             "options": {
                 "command": "wp-env run tests-cli --env-cwd=wp-content/plugins/<%= slug %> composer test ./",

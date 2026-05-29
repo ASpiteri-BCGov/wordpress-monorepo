@@ -3,11 +3,14 @@ packages:
   - 'plugins/*'
   - 'packages/*'
   - 'tools/*'
+minimumReleaseAge: 1440
 allowBuilds:
   '@parcel/watcher': false
   '@swc/core': false
   core-js: false
   core-js-pure: false
+  esbuild: false
   fs-ext: false
+  fs-ext-extra-prebuilt: false
   nx: false
   unrs-resolver: false

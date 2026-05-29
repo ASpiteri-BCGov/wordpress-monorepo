@@ -26,7 +26,7 @@
         "plugins/*",
         "packages/*"
     ],
-    "dependencies": {
+"dependencies": {
         "@fortawesome/fontawesome-free": "7.2.0",
         "@nx/devkit": "22.5.4",
         "@nx/plugin": "^22.6.2",
@@ -66,6 +66,7 @@
         "test-e2e": "npx nx run-many -t test-e2e",
         "test-integration": "npx nx run-many -t test-integration",
         "test-screenshot": "npx nx run-many -t test-screenshot",
+        "test-screenshot-generate": "npx nx run-many -t test-screenshot-generate",
         "test-unit-js": "npx nx run-many -t test-unit-js",
         "test-unit-php": "npx nx run-many -t test-unit-php",
         "lint": "pnpm run lint-js && pnpm run lint-css && pnpm run lint-php && pnpm run lint-md && pnpm run lint-pkg-json",

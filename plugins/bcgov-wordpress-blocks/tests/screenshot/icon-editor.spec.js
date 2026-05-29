@@ -4,9 +4,6 @@ test.describe( 'icon editor visual regression', () => {
     const BLOCK_NAME = 'bcgov-wordpress-blocks/icon';
     const BLOCK_CLASS = '.wp-block-bcgov-wordpress-blocks-icon';
 
-    // Dockerized browser rendering can still differ slightly across environments.
-    const SCREENSHOT_OPTIONS = { maxDiffPixelRatio: 0.02 };
-
     const setupSelectedIconBlock = async ( { admin, editor, page } ) => {
         await admin.createNewPost();
         await editor.insertBlock( { name: BLOCK_NAME } );
@@ -41,8 +38,7 @@ test.describe( 'icon editor visual regression', () => {
         await page.getByRole( 'button', { name: 'House' } ).click();
 
         await expect( inspectorPanel ).toHaveScreenshot(
-            'icon-editor-filter-house-selected.png',
-            SCREENSHOT_OPTIONS
+            'icon-editor-filter-house-selected.png'
         );
     } );
 
@@ -62,8 +58,7 @@ test.describe( 'icon editor visual regression', () => {
 
         const editorSurface = page.locator( '.edit-post-layout' ).first();
         await expect( editorSurface ).toHaveScreenshot(
-            'icon-editor-selected-house-canvas-and-settings.png',
-            SCREENSHOT_OPTIONS
+            'icon-editor-selected-house-canvas-and-settings.png'
         );
 
         await expect(

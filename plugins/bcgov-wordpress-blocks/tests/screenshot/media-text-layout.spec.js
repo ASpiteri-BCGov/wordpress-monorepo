@@ -10,8 +10,6 @@ test.describe( 'media-text-layout visual regression', () => {
         'assets/images/square-512.png'
     );
 
-    // Dockerized browser rendering can still differ slightly across environments.
-    const SCREENSHOT_OPTIONS = { maxDiffPixelRatio: 0.02 };
     test.beforeEach( async ( { admin } ) => {
         await admin.createNewPost();
     } );
@@ -50,14 +48,12 @@ test.describe( 'media-text-layout visual regression', () => {
 
         // Capture a screenshot of the block in its default desktop view for visual regression testing.
         await expect( preview ).toHaveScreenshot(
-            'media-text-layout-desktop.png',
-            SCREENSHOT_OPTIONS
+            'media-text-layout-desktop.png'
         );
         // Set the viewport to a mobile size and capture another screenshot for mobile view testing.
         await previewPage.setViewportSize( MOBILE_VIEWPORT );
         await expect( preview ).toHaveScreenshot(
-            'media-text-layout-mobile.png',
-            SCREENSHOT_OPTIONS
+            'media-text-layout-mobile.png'
         );
     } );
 } );

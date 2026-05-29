@@ -13,12 +13,13 @@ All workflows live under [`.github/workflows/`](https://github.com/bcgov/wordpre
 1. **Labeler** — Applies labels from `.github/labeler.yml` based on changed paths.
 2. **Install** — pnpm and Node (see workflow for versions), `pnpm install`, root `composer install`.
 3. **Lint** — Full monorepo lint: PHP, JS, CSS, Markdown, `package.json`.
-4. **Playwright** — Browser dependencies installed for e2e.
-5. **Build** — `npx nx affected --base="origin/<base_branch>" -t build` so only **affected** projects build.
-6. **Tests** — `nx affected` for `test-e2e` and `test-integration` the same way.
-7. **Artifacts** — Playwright report uploaded on completion (unless cancelled).
-
-**Screenshot / visual regression** targets exist but may be disabled in YAML until snapshot stability and bot commits are agreed.
+4. **Build** — `npx nx affected --base="origin/<base_branch>" -t build` so only **affected** projects build.
+5. **Tests**:
+    1. **Integration** — PHP WordPress integration tests using wp-env.
+    2. **e2e** — e2e tests using Playwright and wp-env.
+    3. **Screenshot** — Visual regression tests using Playwright and wp-env. Compares screenshots
+        - **Note**: If a screenshot test fails in the CI/CD, check the artifact it uploads during the `actions/upload-artifact` step. It will contain a zip of the diff between the expected screenshots and the ones it produced. Usually the fix for this will require running `npx nx test-screenshot-generate` locally to generate new screenshots.
+6. **Artifacts** — Playwright report uploaded on completion (unless cancelled).
 
 ### How “affected” is chosen
 
