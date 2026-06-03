@@ -1,7 +1,7 @@
 {
     "packages": {
         "bcgov-theme/bcew-theme-2": {
-            "9.9.9": {
+            "999.999.999": {
                 "name": "bcgov-theme/bcew-theme-2",
                 "description": "BCEW Theme 2",
                 "type": "wordpress-theme",
@@ -12,16 +12,16 @@
                         "Bcgov\\BcewTheme2\\Test\\": "tests/"
                     }
                 },
-                "version": "9.9.9",
+                "version": "999.999.999",
                 "dist": {
-                    "url": "https://github.com/ASpiteri-BCGov/wordpress-monorepo/releases/download/bcew-theme-2/v9.9.9/dist.zip",
+                    "url": "https://github.com/ASpiteri-BCGov/wordpress-monorepo/releases/download/bcew-theme-2/v999.999.999/dist.zip",
                     "type": "zip",
-                    "reference": "bcew-theme-2/v9.9.9"
+                    "reference": "bcew-theme-2/v999.999.999"
                 },
                 "source": {
                     "type": "git",
                     "url": "https://github.com/ASpiteri-BCGov/wordpress-monorepo.git",
-                    "reference": "bcew-theme-2/v9.9.9"
+                    "reference": "bcew-theme-2/v999.999.999"
                 }
             }
         }
