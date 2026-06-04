@@ -29,7 +29,7 @@ trap 'rm -rf "$TMP"' EXIT
   git archive HEAD . | tar -x -C "${TMP}"
 )
 
-if [[ "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+if [[ -n "${VERSION}" ]]; then
   set_wordpress_version() {
     local file="$1"
     local pattern="$2"
@@ -47,7 +47,7 @@ if [[ "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     echo "No style.css or ${PROJECT_NAME}.php in release tree — skipping version update."
   fi
 else
-  echo "Version '${VERSION}' is not X.Y.Z — skipping WordPress version update in release artifact."
+  echo "No version provided — skipping WordPress version update in release artifact."
 fi
 
 rm -f "${OUTPUT_ZIP}"

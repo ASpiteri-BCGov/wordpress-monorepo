@@ -43,14 +43,14 @@ When **`tag.yml`** runs for a tag like `bcew-theme-2/v1.4.0`:
 
 1. The workflow parses the tag into project name (`bcew-theme-2`) and version (`1.4.0`).
 2. Source files in the repository are **not** modified.
-3. **Only if the version is `X.Y.Z`** (three numbers, e.g. `1.2.3`), the release **`dist.zip`** gets the version field updated:
+3. The release **`dist.zip`** gets the version field updated to match the tag (including prerelease segments such as `1.0.0-alpha.5`):
    - **Theme** — `Version:` line in `style.css`
    - **Plugin** — `* Version:` line in `<nx-project-name>.php`
 4. That updated file exists only inside **`dist.zip`** attached to the GitHub Release.
 
-Tags with other version shapes (for example `1.2.3-beta.1`) still release, but skip the version update step.
+You do not need to edit the version by hand before tagging. The placeholder in source (e.g. `1.0.0`) can stay as-is.
 
-You do not need to edit the version by hand before tagging for `X.Y.Z` releases. The placeholder in source (e.g. `1.0.0`) can stay as-is.
+**Requirement:** The tagged commit must include `.github/scripts/prepare-release-zip.sh` and the updated `tag.yml` **Zip Artifacts** step. Tags pushed before that workflow landed (for example from `main` without merging the auto-version change) still produce a zip, but the WordPress header stays at the source placeholder.
 
 ## Communicating version bumps
 
