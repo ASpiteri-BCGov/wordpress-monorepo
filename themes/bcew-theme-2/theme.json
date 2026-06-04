@@ -21,7 +21,7 @@
                 "surface": {
                     "color": {
                         "primary": {
-                            "default": "var(--bcds-surface-color-primary-default)",
+                            "default": "red",
                             "hover": "var(--bcds-surface-color-primary-hover)",
                             "pressed": "var(--bcds-surface-color-primary-pressed)",
                             "disabled": "var(--bcds-surface-color-primary-disabled)",
